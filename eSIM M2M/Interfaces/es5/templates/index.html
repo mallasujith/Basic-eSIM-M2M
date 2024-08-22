@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES5 - Display EID Information</title>
+</head>
+<body>
+    <h1>ES5 - Display Profile Information from ES2</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Register Number</th>
+                <th>ICCID</th>
+                <th>IMEI</th>
+                <th>Industry Identifier</th>
+                <th>Specifying Telecommunication</th>
+                <th>Country Code</th>
+                <th>Issuer Identifier</th>
+                <th>Platform Version</th>
+                <th>OS Version</th>
+                <th>Individual Identification Number</th>
+                <th>Check Digits</th>
+                <th>EID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if eid_info %}
+                {% for entry in eid_info %}
+                <tr>
+                    <td>{{ entry['register_number'] }}</td>
+                    <td>{{ entry['ICCID'] }}</td>
+                    <td>{{ entry['IMEI'] }}</td>
+                    <td>{{ entry['EIS_information']['Industry Identifier'] }}</td>
+                    <td>{{ entry['EIS_information']['Specifying Telecommunication'] }}</td>
+                    <td>{{ entry['EIS_information']['Country Code'] }}</td>
+                    <td>{{ entry['EIS_information']['Issuer Identifier'] }}</td>
+                    <td>{{ entry['EIS_information']['Platform Version'] }}</td>
+                    <td>{{ entry['EIS_information']['OS Version'] }}</td>
+                    <td>{{ entry['EIS_information']['Individual Identification Number'] }}</td>
+                    <td>{{ entry['EIS_information']['Check Digits'] }}</td>
+                    <td>{{ entry['EID'] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="12">No EID information available</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>
+
